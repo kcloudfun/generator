@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <!-- targetRuntime：设置生成的文件适用于那个 mybatis 版本 -->
+    <context id="default" targetRuntime="MyBatis3">
+
+        <commentGenerator>
+            <!-- 生成注释时是否去掉自动生成的时间戳 -->
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释：true，是 ； false，否 -->
+            <property name="suppressAllComments" value="false"/>
+            <!-- 注释采用数据库的注释，suppressAllComments 必须设置为 false 才会生效 -->
+            <property name="addRemarkComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://101.37.17.194:3306/admin?useUnicode=true;characterEncoding=utf-8;useSSL=false"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <!-- 数据库中的 decimal 是否强制使用 BigDecimal 类 -->
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+
+        <!-- 实体类文件 -->
+        <javaModelGenerator targetPackage="com.likai.generator.po" targetProject="src/main/java">
+
+        </javaModelGenerator>
+
+        <!-- MAPPER文件 -->
+        <sqlMapGenerator targetPackage="com.likai.generator.dao" targetProject="src/main/java">
+
+        </sqlMapGenerator>
+
+        <!-- DAO文件 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.likai.generator.dao" targetProject="src/main/java">
+
+        </javaClientGenerator>
+
+        <!-- tableName是数据库中的表名，domainObjectName是生成的JAVA模型名，后面的参数不用改，要生成更多的表就在下面继续加table标签 -->
+        <table tableName="sys_user" domainObjectName="SysUser"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+
+            <!-- tinyint逆向生成时候会根据长度被定义成Boolean和Byte，可以这样针对特殊自动这样处理 -->
+            <!-- <columnOverride column="del_flag" javaType="java.lang.Integer" /> -->
+        </table>
+    </context>
+</generatorConfiguration>
